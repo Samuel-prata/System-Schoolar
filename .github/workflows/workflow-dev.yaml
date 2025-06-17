@@ -1,0 +1,22 @@
+name: Continuos Integration # nome
+
+# Evento que vai acionar essa integração. pode ser um pull request, um push, um issue ou algo relacionado ao github
+on: pull_request # -> Posso especificar as branches
+
+jobs:
+  continuos-integration:
+  # Máquina que executa
+    runs-on: ubuntu-latest 
+  # Passo a passo
+    steps:
+      - uses: actions/checkout@v3
+      - name: Using Node.jobs
+        uses: actions/setup-node@v2
+        with:
+          node-version: 20.17.0
+      - name: run install, build and test
+        run: |
+          npm install
+          npm run build
+          npm run test
+          
